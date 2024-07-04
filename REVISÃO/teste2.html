@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONSULTORIA DE IMAGEM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CONSULTORIA DE IMAGEM</h1>
+        </header>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for a product">
+            <button id="searchButton">Search</button>
+        </div>
+        <div id="productList"></div>
+        
+    </div>
+    <script type="importmap">
+        {
+          "imports": {
+            "@google/generative-ai": "https://esm.run/@google/generative-ai"
+          }
+        }
+    </script>
+    <script type="module">
+        import { GoogleGenerativeAI } from "@google/generative-ai";
+
+        const API_KEY = 'AIzaSyAtNxa9VTeXq6AsLlDMqr200_VNqFo-VIM';
+        const genAI = new GoogleGenerativeAI(API_KEY);
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+        document.getElementById('searchButton').addEventListener('click', function() {
+            const searchTerm = document.getElementById('searchInput').value;
+            getProducts(searchTerm);
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

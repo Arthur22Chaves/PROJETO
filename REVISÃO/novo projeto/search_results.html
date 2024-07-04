@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados da Pesquisa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        {{ style }}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Resultados da Pesquisa</h1>
+    </header>
+    <div class="products">
+        {% for product in search_results %}
+        <div class="product">
+            <a href="{{ url_for('product_details', product_id=product.id) }}">
+                <img src="{{ product.image_url }}" alt="{{ product.name }}">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p>Preço: {{ product.price }}</p>
+                <a href="{{ product.purchase_link }}"><button>Comprar Agora</button></a>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+</body>
+</html>
